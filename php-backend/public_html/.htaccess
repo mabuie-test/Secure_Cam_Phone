@@ -1,0 +1,3 @@
+RewriteEngine On
+# evita listagem de directórios
+Options -Indexes
