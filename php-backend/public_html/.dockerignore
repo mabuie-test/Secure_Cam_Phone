@@ -1,11 +1,7 @@
-project-root/
-├─ Dockerfile
-├─ docker-compose.yml
-├─ .dockerignore
-└─ htdocs/
-    ├─ api/
-    ├─ assets/
-    ├─ includes/
-    ├─ logs/
-    ├─ index.php
-    ...
+.git
+.gitignore
+node_modules
+*.log
+.DS_Store
+*.zip
+.vscode
