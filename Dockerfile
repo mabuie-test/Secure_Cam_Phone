@@ -1,25 +1,25 @@
-# Dockerfile — Apache + PHP 8.1
+# Dockerfile — Apache + PHP 8.1 (ajustado para a tua estrutura)
 FROM php:8.1-apache
 
-# Instala dependências e extensões necessárias
+# Instala extensões necessárias
 RUN apt-get update && apt-get install -y \
     libzip-dev zip unzip git libpng-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo pdo_mysql
 
-# Copia código para o diretório público do Apache
+# Definir working dir e copiar o conteúdo do teu backend
 WORKDIR /var/www/html
-COPY htdocs/ /var/www/html/
+
+# Ajustado para a estrutura: copia php-backend/public_html para /var/www/html
+COPY php-backend/public_html/ /var/www/html/
 
 # Cria directórios de uploads e logs e garante permissões
 RUN mkdir -p /var/www/html/uploads /var/www/html/logs \
     && chown -R www-data:www-data /var/www/html/uploads /var/www/html/logs \
     && chmod -R 755 /var/www/html/uploads /var/www/html/logs
 
-# Habilita mod_rewrite (se precisares)
+# Habilita mod_rewrite se necessário
 RUN a2enmod rewrite
 
-# Expor porta HTTP (Render mapeia para o PORT)
 EXPOSE 80
 
-# Comando default (o Render define a variável PORT no ambiente)
 CMD ["apache2-foreground"]
