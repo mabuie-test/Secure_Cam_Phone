@@ -7,13 +7,14 @@ $uploads_default = __DIR__ . '/../uploads';
 define('UPLOAD_BASE', getenv('UPLOAD_BASE') ?: $uploads_default);
 define('MAX_UPLOAD_SIZE', intval(getenv('MAX_UPLOAD_SIZE') ?: 5 * 1024 * 1024));
 
-// Database (fallback para os valores antigos)
+// Database (fallback para os teus valores)
 define('DB_HOST', getenv('DB_HOST') ?: 'sql100.ezyro.com');
+define('DB_PORT', intval(getenv('DB_PORT') ?: 3306));
 define('DB_NAME', getenv('DB_NAME') ?: 'ezyro_40918309_vigia');
 define('DB_USER', getenv('DB_USER') ?: 'ezyro_40918309');
 define('DB_PASS', getenv('DB_PASS') ?: 'ab55674c779e4f5');
 
-// Base URL público
+// Base URL público (útil para links)
 define('BASE_URL', getenv('BASE_URL') ?: 'https://vigia.unaux.com');
 
 // Log dir
