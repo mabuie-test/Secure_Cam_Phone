@@ -1,24 +1,25 @@
 <?php
-// htdocs/includes/config.php
-// Usa variáveis de ambiente quando disponíveis, senão usa os valores existentes (fallback).
+// php-backend/public_html/includes/config.php
+// Configuração central — usa variáveis de ambiente quando disponível
 
 // Uploads
 $uploads_default = __DIR__ . '/../uploads';
 define('UPLOAD_BASE', getenv('UPLOAD_BASE') ?: $uploads_default);
-define('MAX_UPLOAD_SIZE', intval(getenv('MAX_UPLOAD_SIZE') ?: 5 * 1024 * 1024)); // 5 MB por frame
+define('MAX_UPLOAD_SIZE', intval(getenv('MAX_UPLOAD_SIZE') ?: 5 * 1024 * 1024));
 
-// Database (podem ser definidas no Render como env vars)
+// Database (fallback para os teus valores)
 define('DB_HOST', getenv('DB_HOST') ?: 'sql100.ezyro.com');
+define('DB_PORT', intval(getenv('DB_PORT') ?: 3306));
 define('DB_NAME', getenv('DB_NAME') ?: 'ezyro_40918309_vigia');
 define('DB_USER', getenv('DB_USER') ?: 'ezyro_40918309');
 define('DB_PASS', getenv('DB_PASS') ?: 'ab55674c779e4f5');
 
-// Base url público (usado pelo Android/links)
+// Base URL público (útil para links)
 define('BASE_URL', getenv('BASE_URL') ?: 'https://vigia.unaux.com');
 
-// Opcional: diretório de logs (padrão htdocs/logs)
+// Log dir
 define('LOG_DIR', getenv('LOG_DIR') ?: __DIR__ . '/../logs');
 
-// Garante que pastas existem quando possível (não falha se o host não permitir)
+// cria pastas se possível
 @mkdir(UPLOAD_BASE, 0755, true);
 @mkdir(LOG_DIR, 0755, true);
